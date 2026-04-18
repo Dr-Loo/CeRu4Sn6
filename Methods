@@ -1,0 +1,59 @@
+METHODS
+
+Experimental Design and Pre-registration
+This study follows a pre-registered experimental protocol specifying the hypothesis, measurement procedures, data processing pipeline, and quantitative confirmation/falsification criteria. The protocol was deposited prior to data collection (Zenodo DOI: [placeholder]) and includes predefined thresholds for evaluating the presence of a topological dome in the anomalous Hall conductivity of CeRu4Sn6. The central hypothesis is that the anomalous Hall response forms a single, connected dome in the (P, B) parameter space, centered at ambient conditions, with monotonic suppression under hydrostatic pressure and magnetic field. With N = 3 crystals and ≥5 repeats per (P, B) point, Monte Carlo simulations based on pilot noise estimates indicate ≥80% power to detect a 20% deviation from the exponential dome shape at α = 0.05, assuming independent measurement errors and the specified background-subtraction pipeline.
+
+Sample Preparation and Characterization
+High-quality single crystals of CeRu4Sn6 were prepared using standard growth techniques (flux or Czochralski methods). Stoichiometry and crystal structure were verified using X-ray diffraction (XRD) and energy-dispersive X-ray spectroscopy (EDX). Baseline transport and thermodynamic measurements were performed to confirm consistency with known heavy-fermion behavior, including non-Fermi-liquid scaling in resistivity (ρ_xx ∝ T^n with n ≈ 1.2) and logarithmic contributions to specific heat (C_p/T ∝ −ln T). No magnetic order was detected down to 50 mK. Inhomogeneity was assessed via multi-contact resistance variation, which remained <5% across all samples.
+
+Measurement Conditions
+Transport and thermodynamic measurements were conducted over the following parameter ranges:
+- Pressure: 0–2.0 GPa under hydrostatic conditions, calibrated via ruby fluorescence (uncertainty ±0.02 GPa, propagated to dome-fit confidence intervals via Monte Carlo resampling).
+- Magnetic field: 0–12 T using symmetric and antisymmetric sweeps.
+- Temperature: 50 mK–10 K, with dilution refrigeration employed below 300 mK.
+Measurements included anomalous Hall conductivity (σ_xy), longitudinal resistivity (ρ_xx), and specific heat (C_p), with additional Nernst effect measurements where applicable.
+
+Data Processing and Signal Extraction
+The spontaneous anomalous Hall conductivity was extracted as the even-in-field component:
+σ_xy^spont = [σ_xy(+B) + σ_xy(−B)] / 2.
+The ordinary Hall contribution (odd in field) was removed using a linear fit at high fields (B > 8 T) and subtracted prior to symmetrization. Longitudinal resistivity data were fit to a baseline model ρ_xx(T) = ρ_0 + AT^n, and residuals were used to correct for systematic offsets and contact misalignment artifacts.
+
+Dome Modeling and Statistical Analysis
+The two-dimensional surface σ_xy^spont(P, B) was fit using three competing models:
+1. SFIT exponential (elliptical dome): σ = σ_0 exp[−(P/P_0)^2 − (B/B_0)^2]
+2. Power-law model: σ = σ_0 [1 + (P/P_c)^2 + (B/B_c)^2]^(−n)
+3. Quadratic dome model: σ = σ_0 [1 − (P/P_c)^2 − (B/B_c)^2], for P < P_c, B < B_c (zero otherwise)
+Model selection was performed using the corrected Akaike Information Criterion (AICc). Differences in AICc (ΔAICc) and Akaike weights were used to assess relative model support. Note: The AICc framework selects the best model among those specified; it does not prove the true functional form. If the SFIT model is supported, future work should test whether the exponential form holds in other non-centrosymmetric heavy-fermion compounds. If disfavoured, the result indicates that CeRu4Sn6's topological suppression follows conventional scaling, not that the underlying braid-manifold concept is universally invalid.
+
+Thermodynamic Coupling Analysis
+The relationship between anomalous Hall conductivity and thermodynamic response was evaluated via linear regression:
+γ = a · σ_xy^spont,
+where γ = C_el/T is the electronic specific heat coefficient after subtraction of non-topological contributions. The primary fit was constrained to pass through the origin to test strict proportionality. As a diagnostic, an unconstrained fit (γ = a · σ_xy^spont + b) was also performed; we report whether the 95% confidence interval for the intercept b includes zero. Goodness-of-fit was assessed via R² and 95% confidence intervals for the slope a in both cases.
+
+Falsification and Confirmation Criteria
+The hypothesis was evaluated against predefined quantitative criteria:
+- Ambient signal: σ_xy(0,0) < 5 Ω^−1 cm^−1 (Falsified) [Threshold based on instrument noise floor and prior heavy-fermion benchmarks]
+- Dome peak location: Maximum at P > 0.15 GPa or B > 0.3 T (Falsified) [Offsets exceed calibration uncertainty]
+- Suppression scale: σ_xy > 30% of ambient at P = 1.5 GPa or B = 4 T (Falsified) [Exponential model predicts >70% suppression; threshold allows 2σ margin]
+- Phase topology: Disconnected regions or secondary maxima in (P, B) plane (Falsified) [SFIT predicts single connected dome]
+- Dome shape: Half-max contour center > 0.05 GPa or > 0.1 T from origin (Falsified) [Tests elliptical symmetry beyond fitting uncertainty]
+- Thermodynamic link: Linear fit R² < 0.7, or 95% CI for intercept excludes zero (Falsified) [SFIT predicts tight proportionality]
+- Confirmation: All thresholds met AND statistical preference for the SFIT exponential model (ΔAICc > 6 over both alternatives)
+The falsification rule is conjunctive: failure of any single criterion falsifies the hypothesis. No family-wise error correction is applied, as the test is designed for strong inference rather than controlling false-discovery rates across independent hypotheses.
+
+Blinding and Bias Control
+To minimize confirmation bias:
+- Experimental measurements were conducted without knowledge of theoretical predictions; researchers followed only the prescribed (P, B) grid.
+- Data analysis was performed on blinded datasets, with model fitting carried out independently of sample identity.
+- Model selection was restricted to the three predefined functional forms to prevent post-hoc model tuning.
+
+Uncertainty and Reproducibility
+Uncertainty propagation incorporates pressure calibration uncertainty (modeled via Monte Carlo sampling), measurement noise in transport signals, and statistical uncertainty in model-fitting parameters. All deviations from step sizes, thresholds, or analysis rules are documented in a deviation log and reported in the final manuscript. The analysis pipeline is fully reproducible using version-controlled scripts and containerized environments to ensure exact dependency matching.
+
+Data Availability
+All raw and processed data, including transport measurements, thermodynamic data, and calibration logs, will be made publicly available upon publication through a permanent archive (Zenodo). The analysis code, including background subtraction, dome fitting, and statistical evaluation routines, is hosted in a version-controlled repository (github.com/Dr-Loo/CeRu4Sn6-analysis) and archived via Zenodo integration at publication. The repository contains:
+- Raw datasets and processed data products
+- Python-based analysis scripts and Jupyter notebooks
+- Environment specifications (environment.yml, Dockerfile)
+- Comprehensive documentation of all preprocessing and modeling steps
+The full pre-registered protocol, including confirmation and falsification criteria, is publicly accessible at the deposited Zenodo record.
