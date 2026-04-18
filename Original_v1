@@ -1,0 +1,62 @@
+# SFIT Topological Dome Validation — CeRu₄Sn₆
+
+This repository contains experimental data, analysis scripts, and reproducibility resources for testing the **SFIT (Symbolic Field Interpretation Theory)** prediction of a *topological dome* in the anomalous Hall conductivity of **CeRu₄Sn₆**.
+
+---
+
+## 🔬 Pre-registered Protocol
+
+This work follows a **pre-registered experimental design** with explicit confirmation and falsification criteria.
+
+📄 **Full Protocol (v1.1):**  
+:contentReference[oaicite:0]{index=0}
+
+The protocol defines:
+- Hypothesis and theoretical prediction  
+- Experimental parameter space (pressure, magnetic field, temperature)  
+- Data processing and model comparison (AICc)  
+- Quantitative falsification thresholds  
+- Blinding, reproducibility, and deviation rules  
+
+---
+
+## 🧠 Scientific Objective
+
+Test the SFIT prediction that:
+
+> A topological semimetal phase in CeRu₄Sn₆ forms a **single, connected dome** in the \((P, B)\) plane, centered at ambient conditions.
+
+Key expected features:
+- Maximum anomalous Hall conductivity at \((P, B) = (0, 0)\)
+- Monotonic suppression under pressure and magnetic field
+- Exponential (elliptical) dome structure
+
+---
+
+## 📊 Repository Structure
+
+```text
+├── data/
+│   ├── raw/              # Raw experimental datasets
+│   └── processed/        # Cleaned and derived datasets
+│
+├── analysis/
+│   ├── dome_fitting/     # Model fitting (SFIT vs alternatives)
+│   ├── transport/        # Hall and resistivity analysis
+│   ├── thermodynamics/   # Specific heat and γ extraction
+│   └── statistics/       # AICc, regression, uncertainty
+│
+├── notebooks/
+│   ├── background_subtraction.ipynb
+│   ├── dome_fit_comparison.ipynb
+│   └── scaling_analysis.ipynb
+│
+├── environment/
+│   ├── environment.yml
+│   └── Dockerfile
+│
+├── docs/
+│   └── figures/          # Generated plots for publication
+│
+├── Deviation_Log.md      # Any deviations from pre-registration
+└── README.md
